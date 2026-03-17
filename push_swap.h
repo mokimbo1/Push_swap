@@ -16,13 +16,25 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include "libft/libft.h"
+# include "libft.h"
 
-typedef struct s_stack
+typedef struct s_node
 {
     int         	number;
     int         	pos;
-    struct s_stack  *prev;
-    struct s_stack  *next;
-}   t_stack;
+    struct s_node  *prev;
+    struct s_node  *next;
+}   t_node;
+
+typedef struct s_list
+{
+    t_node     *head;
+    t_node     *tail;
+    int         size;
+}   t_list;
+
+void setting_to_NULL(t_list *stack_a, t_list *stack_b);
+int	Int_Max_Min(char *str);
 
 #endif

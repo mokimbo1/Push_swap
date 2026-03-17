@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_wap.c                                         :+:      :+:    :+:   */
+/*   setting_to_NULL.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minokim <minokim@student.42heilbronn.de>   #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026-03-09 08:28:53 by minokim           #+#    #+#             */
-/*   Updated: 2026-03-09 08:28:53 by minokim          ###   ########.fr       */
+/*   Created: 2026-03-11 02:13:36 by minokim           #+#    #+#             */
+/*   Updated: 2026-03-11 02:13:36 by minokim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int ac, char **av)
+void setting_to_NULL(t_list *stack_a, t_list *stack_b)
 {
-	
+	stack_a->head = NULL;
+	stack_a->size = 0;
+	stack_a->tail = NULL;
+	stack_b->head = NULL;
+	stack_b->tail = NULL;
+	stack_b->size = 0;
 }

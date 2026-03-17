@@ -10,28 +10,82 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	main(int ac, char **av)
+void	check_num(char **av)
 {
 	int i;
-	i = 1;
-	char *allnum;
+	int j;
+	int d;
+	int l;
 
-	if (ac > 1)
+	j = 1;
+	while(av[j])
 	{
-		while (av[i])
-		{
-			allnum = ft_strjoin(, );
-			i++;
-		}
 		i = 0;
-		while (allnum[i])
+		if ((av[j][i] == '-' || av[j][i] == '+') && av[j][i + 1])
+            i++;
+		while(av[j][i])
 		{
-			if(ft_isdigit(i))
-				ft_split(allnum, 32);
-			else()
+			d = ft_isdigit(av[j][i]);
+			l = Int_Max_Min(av[j]);
+			if (d == 0 || l == 0)
+			{
+				write(1, "Error\n", 6);
+				exit (-1);
+			}
 			i++;
 		}
+		j++;
 	}
+}
+
+//checks if there is same args multiple times
+void	check_double(char **av)
+{
+	int i;
+	int j;
+	int dif;
+
+	i = 0;
+	while(av[i])
+	{
+		j = 0;
+		while (j < i)
+		{
+			dif = ft_strncmp(av[i], av[j], 11);
+			if (dif == 0)
+			{
+				write (1, "Error\n", 6);
+				exit (-1);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+int main(int ac, char **av)
+{
+	t_list stack_a;
+	t_list stack_b;
+	char **args;
+
+	int i;
+	i = 0;
+	if (ac < 2)
+		return (0);
+	setting_to_NULL(&stack_a, &stack_b);
+	if (ac == 2)
+	{
+		if (ac == 2)
+			args = ft_split(av[1], ' ');
+		else
+   	 		args = &av[1];
+	}
+	else
+		args = av;
+	check_num(args);
+	check_double(args);
+	//fill_list();
 }

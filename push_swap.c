@@ -12,26 +12,27 @@
 
 #include "push_swap.h"
 
-void	check_num(char **av)
+void	check_num(char **args)
 {
-	int i;
-	int j;
-	int d;
-	int l;
+	int	i;
+	int	j;
 
-	j = 1;
-	while(av[j])
+	j = 0;
+	while (args[j])
 	{
-		i = 0;
-		if ((av[j][i] == '-' || av[j][i] == '+') && av[j][i + 1])
-            i++;
-		while(av[j][i])
+		if (Int_Max_Min (args[j]) == 0)
 		{
-			d = ft_isdigit(av[j][i]);
-			l = Int_Max_Min(av[j]);
-			if (d == 0 || l == 0)
+			write (2, "Error\n", 6);
+			exit (-1);
+		}
+		i = 0;
+		if ((args[j][i] == '-' || args[j][i] == '+') && args[j][i + 1])
+			i++;
+		while (args[j][i])
+		{
+			if (ft_isdigit(args[j][i]) == 0)
 			{
-				write(1, "Error\n", 6);
+				write (2, "Error\n", 6);
 				exit (-1);
 			}
 			i++;
@@ -40,20 +41,19 @@ void	check_num(char **av)
 	}
 }
 
-//checks if there is same args multiple times
 void	check_double(char **av)
 {
-	int i;
-	int j;
-	int dif;
+	int	i;
+	int	j;
+	int	dif;
 
 	i = 0;
-	while(av[i])
+	while (av[i])
 	{
 		j = 0;
 		while (j < i)
 		{
-			dif = ft_strncmp(av[i], av[j], 11);
+			dif = ft_strncmp (av[i], av[j], 11);
 			if (dif == 0)
 			{
 				write (1, "Error\n", 6);
@@ -65,27 +65,55 @@ void	check_double(char **av)
 	}
 }
 
+void	init_and_parse(t_list *stack_a, t_list *stack_b, char **args)
+{
+	check_num (args);
+	check_double (args);
+	setting_to_NULL(&stack_a, &stack_b);
+	fill_stack(&stack_a, args);
+	assign_index(&stack_a);
+}
+
+int is_sorted(t_list *stack)
+{
+    t_node *tmp;
+
+    if (!stack->head)
+        return (1);
+    tmp = stack->head;
+    while (tmp->next)
+    {
+        if (tmp->value > tmp->next->value)
+            return (0);
+        tmp = tmp->next;
+    }
+    return (1);
+}
+
 int main(int ac, char **av)
 {
-	t_list stack_a;
-	t_list stack_b;
-	char **args;
+    t_list  stack_a;
+    t_list  stack_b;
+    char    **args;
 
-	int i;
-	i = 0;
-	if (ac < 2)
-		return (0);
-	setting_to_NULL(&stack_a, &stack_b);
-	if (ac == 2)
-	{
-		if (ac == 2)
-			args = ft_split(av[1], ' ');
-		else
-   	 		args = &av[1];
-	}
-	else
-		args = av;
-	check_num(args);
-	check_double(args);
-	//fill_list();
+    if (ac < 2)
+        return (0);
+    if (ac == 2)
+        args = ft_split(av[1], ' ');
+    else
+        args = &av[1];
+    if (!args || !args[0])
+        return (write(2, "Error\n", 6), 1);
+    init_and_parse(&stack_a, &stack_b, args);
+    if (!is_sorted(&stack_a))
+    {
+        if (stack_a.size <= 5)
+            tiny_sort(&stack_a, &stack_b);
+        else
+            radix_sort(&stack_a, &stack_b);
+    }
+    if (ac == 2)
+        free_double_pointer(args);
+    free_stack(&stack_a);
+    return (0);
 }

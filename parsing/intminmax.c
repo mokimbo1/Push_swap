@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static int	ft_skippo(int c)
 {
@@ -46,13 +46,16 @@ long	ft_atol(const char *nptr)
 	}
 	return (res * sign);
 }
-int	Int_Max_Min(char *str)
-{
-	long num;
-	
-	num = ft_atol(str);
 
-	if (num < -2147483648 || num > 2147483647)
-		return (0);
-	return (1);
+int Int_Max_Min(char *str)
+{
+    long num;
+    
+    int len = ft_strlen(str);
+    if (len > 12) return (0); 
+
+    num = ft_atol(str);
+    if (num < -2147483648 || num > 2147483647)
+        return (0);
+    return (1);
 }

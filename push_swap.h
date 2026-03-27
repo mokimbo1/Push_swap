@@ -21,17 +21,16 @@
 
 typedef struct s_node
 {
-    int         	number;
-    int         	pos;
-    struct s_node  *prev;
-    struct s_node  *next;
+    int             value;
+    int             index;
+    struct s_node   *prev;
+    struct s_node   *next;
 }   t_node;
 
 typedef struct s_list
 {
-    t_node     *head;
-    t_node     *tail;
-    int         size;
+    t_node  *head;
+    int     size;
 }   t_list;
 
 void setting_to_NULL(t_list *stack_a, t_list *stack_b);

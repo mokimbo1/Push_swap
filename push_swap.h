@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "libft/libft.h"
-# include "libft.h"
 
 typedef struct s_node
 {
@@ -33,7 +32,36 @@ typedef struct s_list
     int     size;
 }   t_list;
 
-void setting_to_NULL(t_list *stack_a, t_list *stack_b);
-int	Int_Max_Min(char *str);
+int         is_sorted(t_list *stack);
+void        init_and_parse(t_list *stack_a, t_list *stack_b, char **args);
+void	    check_double(char **av);
+void	    check_num(char **args);
+void        free_stack(t_list *stack);
+void        free_double_pointer(char **str);
+void        assign_index(t_list *stack_a);
+void	    tiny_sort(t_list *stack_a, t_list *stack_b);
+void        setting_to_NULL(t_list *stack_a, t_list *stack_b);
+void	    radix_sort(t_list *stack_a, t_list *stack_b);
+void	    fill_stack(t_list *stack, char **args);
+void        add_node(t_list *stack, t_node *new_node);
+t_node      *ft_new_node(int value);
+int         Int_Max_Min(char *str);
+long        ft_atol(const char *nptr);
+static int  ft_skippo(int c);
+void	    pa(t_list *stack_a, t_list *stack_b);
+void	    pb(t_list *stack_a, t_list *stack_b);
+void	    ra(t_list *stack_a);
+void	    reverse_rotate(t_list *stack);
+void	    rra(t_list *stack_a);
+void	    rrb(t_list *stack_b);
+void	    rrr(t_list *stack_a, t_list *stack_b);
+void	    rotate(t_list *stack);
+void	    ra(t_list *stack_a);
+void	    rb(t_list *stack_b);
+void	    rr(t_list *stack_a, t_list *stack_b);
+void	    swap(t_list *stack);
+void	    sa(t_list *stack_a);
+void	    sb(t_list *stack_b);
+void	    ss(t_list *stack_a, t_list *stack_b);
 
 #endif

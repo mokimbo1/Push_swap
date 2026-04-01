@@ -1,51 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations3.c                                      :+:      :+:    :+:   */
+/*   operations_reverse_rotate.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minokim <minokim@student.42heilbronn.de>   #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026-03-24 22:58:54 by minokim           #+#    #+#             */
-/*   Updated: 2026-03-24 22:58:54 by minokim          ###   ########.fr       */
+/*   Created: 2026-03-24 23:28:51 by minokim           #+#    #+#             */
+/*   Updated: 2026-03-24 23:28:51 by minokim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.c"
+#include "../push_swap.h"
 
-void	rotate(t_list *stack)
+void	reverse_rotate(t_list *stack)
 {
-	t_node	*first;
+	t_node	*before_last;
 	t_node	*last;
 
 	if (!stack->head || !stack->head->next)
-		return;
-	first = stack->head;
-	stack->head = first->next;
-
+		return ;
+	before_last = NULL;
 	last = stack->head;
-	while(last->next != NULL)
+	while (last->next != NULL)
 	{
+		before_last = last;
 		last = last->next;
 	}
-	last->next = first;
-	first->next = NULL;
+	before_last->next = NULL;
+	last->next = stack->head;
+	stack->head = last;
 }
 
-void	ra(t_list *stack_a)
+void	rra(t_list *stack_a)
 {
-	rotate(stack_a);
-	write(1, "ra\n", 3);
+	reverse_rotate (stack_a);
+	write (1, "rra\n", 4);
 }
 
-void	rb(t_list *stack_b)
+void	rrb(t_list *stack_b)
 {
-	rotate(stack_b);
-	write (1, "rb\n", 3);
+	reverse_rotate (stack_b);
+	write (1, "rrb\n", 4);
 }
 
-void	rr(t_list *stack_a, t_list *stack_b)
+void	rrr(t_list *stack_a, t_list *stack_b)
 {
-	rotate(stack_a);
-	rotate(stack_b);
-	write (1, "rr\n", 3);
+	reverse_rotate (stack_a);
+	reverse_rotate (stack_b);
+	write (1, "rrr\n", 4);
 }

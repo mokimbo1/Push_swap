@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void setting_to_NULL(t_list *stack_a, t_list *stack_b)
+void	setting_to_null(t_list *stack_a, t_list *stack_b)
 {
 	stack_a->head = NULL;
 	stack_a->size = 0;

@@ -1,27 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Makefile                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: minokim <minokim@student.42heilbronn.de>   #+#  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026-03-24 00:23:45 by minokim           #+#    #+#             */
-/*   Updated: 2026-03-24 00:23:45 by minokim          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 NAME        = push_swap
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -I.
+CFLAGS      = -Wall -Wextra -Werror
 
-SRC         = main.c parsing.c utils.c list_utils.c \
-              operations_s.c operations_p.c operations_r.c operations_rr.c \
-              algorithm_tiny.c
-
+SRC         = push_swap.c ./operations/push.c ./operations/reverse_rotate.c ./operations/rotate.c ./operations/swap.c\
+			./parsing/intminmax.c ./parsing/new_node.c ./parsing/setting_to_NULL.c ./sortings/radix_sort.c ./sortings/tiny_sort.c assign_index.c free.c
 OBJ         = $(SRC:.c=.o)
 
 LIBFT_DIR   = ./libft
-LIBFT       = $(LIBFT_DIR)/libft.a
+LIBFT       = $(LIBFT_DIR)/libftprint.a
 
 all: $(LIBFT) $(NAME)
 

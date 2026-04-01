@@ -12,33 +12,32 @@
 
 #include "push_swap.h"
 
-void free_double_pointer(char **str)
+void	free_double_pointer(char **str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (!str)
-        return;
-    while (str[i])
-    {
-        free(str[i]);
-        i++;
-    }
-    free(str);
-    write (1, "error\n", 6);
+	i = 0;
+	if (!str)
+		return ;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }
 
-void free_stack(t_list *stack)
+void	free_stack(t_list *stack)
 {
-    t_node *tmp;
-    t_node *next;
+	t_node	*tmp;
+	t_node	*next;
 
-    tmp = stack->head;
-    while (tmp)
-    {
-        next = tmp->next;
-        free(tmp);
-        tmp = next;
-    }
-    stack->head = NULL;
+	tmp = stack->head;
+	while (tmp)
+	{
+		next = tmp->next;
+		free(tmp);
+		tmp = next;
+	}
+	stack->head = NULL;
 }

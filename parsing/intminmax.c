@@ -25,7 +25,7 @@ long	ft_atol(const char *nptr)
 {
 	long	res;
 	long	i;
-	int	sign;
+	int		sign;
 
 	res = 0;
 	sign = 1;
@@ -47,15 +47,16 @@ long	ft_atol(const char *nptr)
 	return (res * sign);
 }
 
-int Int_Max_Min(char *str)
+int	int_max_min(char *str)
 {
-    long num;
-    
-    int len = ft_strlen(str);
-    if (len > 12) return (0); 
+	long	num;
+	int		len;
 
-    num = ft_atol(str);
-    if (num < -2147483648 || num > 2147483647)
-        return (0);
-    return (1);
+	len = ft_strlen(str);
+	if (len > 12)
+		return (0);
+	num = ft_atol(str);
+	if (num < -2147483648 || num > 2147483647)
+		return (0);
+	return (1);
 }
